@@ -1,4 +1,4 @@
-# Agent context: backend/proxy
+# Agent context: backend
 
 ## Purpose
 

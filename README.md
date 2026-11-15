@@ -1,4 +1,4 @@
-# @danmaku-anywhere/proxy
+# Danmaku Anywhere backend
 
 Cloudflare Workers backend: API proxy, auth, DDP/danmaku routes, LLM, and D1 DB.
 

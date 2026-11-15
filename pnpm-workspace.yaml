@@ -1,0 +1,8 @@
+nodeLinker: isolated
+allowBuilds:
+  esbuild: false
+  lefthook: false
+  sharp: false
+  workerd: false
+minimumReleaseAgeExclude:
+  - '@danmaku-anywhere/*'
