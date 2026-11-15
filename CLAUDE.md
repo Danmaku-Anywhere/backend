@@ -18,6 +18,10 @@ Cloudflare Workers backend for [Danmaku Anywhere](https://github.com/Danmaku-Any
 | Tests | `pnpm test` |
 | D1 migrations | `pnpm drizzle:generate`, then `pnpm db:migrate:staging` / `pnpm db:migrate:prod` |
 
+## Deploys
+
+Cloudflare Workers Builds deploys `danmaku-anywhere-proxy-staging` (api.danmaku-staging.weeblify.app) from `master` with `pnpm deploy:staging`, and uploads a version for every other branch. Production (`danmaku-anywhere-proxy-production`, api.danmaku.weeblify.app) is not connected to git: deploy it by hand with `pnpm deploy:prod`. D1 migrations are separate from deploys and run with the `db:migrate:*` scripts.
+
 ## Style
 
 Biome formats and lints (`biome.json`): single quotes, no semicolons, 2 spaces. pnpm only, never npm or yarn. PR titles follow `(proxy) description [DA-123]`.
