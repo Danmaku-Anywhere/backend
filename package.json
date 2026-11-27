@@ -22,7 +22,6 @@
     "deploy:prod": "wrangler deploy --env production",
     "drizzle": "drizzle-kit",
     "drizzle:generate": "drizzle-kit generate --config drizzle.config.ts",
-    "drizzle:push:prod": "drizzle-kit push --config drizzle.config.ts",
     "better-auth:generate": "pnpx @better-auth/cli@latest generate",
     "db:migrate:local": "pnpm wrangler d1 migrations apply danmaku-anywhere-db-staging --env staging --local",
     "db:migrate:staging": "pnpm wrangler d1 migrations apply danmaku-anywhere-db-staging --env staging",
