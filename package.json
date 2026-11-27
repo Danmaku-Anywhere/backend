@@ -39,7 +39,7 @@
     "drizzle-kit": "^0.31.11",
     "fallow": "3.49.0",
     "lefthook": "^2.2.4",
-    "typescript": "^5.9.3",
+    "typescript": "^7.0.2",
     "vitest": "5.1.2",
     "wrangler": "^4.168.0",
     "zod-to-json-schema": "^3.25.2"
