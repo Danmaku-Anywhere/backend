@@ -10,15 +10,15 @@ Cloudflare Workers backend: API proxy, auth, DDP/danmaku routes, LLM, and D1 DB.
 
 ## Scripts
 
-| Command | Description |
-| ------- | ----------- |
-| `pnpm dev` | Local dev (staging env) |
-| `pnpm dev:remote` | Remote dev |
-| `pnpm test` | Vitest (pool workers) |
-| `pnpm deploy:staging` | Deploy staging |
-| `pnpm deploy:prod` | Deploy production |
+| Command                 | Description                           |
+| ----------------------- | ------------------------------------- |
+| `pnpm dev`              | Local dev (staging env)               |
+| `pnpm dev:remote`       | Remote dev                            |
+| `pnpm test`             | Vitest (pool workers)                 |
+| `pnpm deploy:staging`   | Deploy staging                        |
+| `pnpm deploy:prod`      | Deploy production                     |
 | `pnpm db:migrate:local` | Apply D1 migrations locally (staging) |
-| `pnpm drizzle:generate` | Generate Drizzle migrations |
+| `pnpm drizzle:generate` | Generate Drizzle migrations           |
 
 ## Key routes
 

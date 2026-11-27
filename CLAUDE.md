@@ -9,13 +9,13 @@ Cloudflare Workers backend for [Danmaku Anywhere](https://github.com/Danmaku-Any
 
 ## Commands
 
-| Task | Command |
-|---|---|
-| Install | `pnpm install` |
-| Dev server | `pnpm dev` |
-| Type check | `pnpm type-check` |
-| Lint and fix | `pnpm lint` |
-| Tests | `pnpm test` |
+| Task          | Command                                                                          |
+| ------------- | -------------------------------------------------------------------------------- |
+| Install       | `pnpm install`                                                                   |
+| Dev server    | `pnpm dev`                                                                       |
+| Type check    | `pnpm type-check`                                                                |
+| Lint and fix  | `pnpm lint`                                                                      |
+| Tests         | `pnpm test`                                                                      |
 | D1 migrations | `pnpm drizzle:generate`, then `pnpm db:migrate:staging` / `pnpm db:migrate:prod` |
 
 ## Deploys
