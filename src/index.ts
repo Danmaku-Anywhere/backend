@@ -115,8 +115,7 @@ export default Sentry.withSentry((env: Env) => {
   return {
     dsn: 'https://a57c6ba48bc0da21d4c6f7074e7a6f0e@o4509744978460672.ingest.us.sentry.io/4509744987308032',
     release: versionId,
-    sendDefaultPii: false,
-    enableLogs: true,
+    dataCollection: { userInfo: false, cookies: false, httpHeaders: false },
     tracesSampleRate: env.ENVIRONMENT === 'production' ? 0.001 : 1.0,
     environment: env.ENVIRONMENT,
     enabled: !getIsTestEnv(),
