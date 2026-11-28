@@ -25,8 +25,8 @@
     "drizzle:push:prod": "drizzle-kit push --config drizzle.config.ts",
     "better-auth:generate": "pnpx @better-auth/cli@latest generate",
     "db:migrate:local": "pnpm wrangler d1 migrations apply danmaku-anywhere-db-staging --env staging --local",
-    "db:migrate:staging": "pnpm wrangler d1 migrations apply danmaku-anywhere-db-staging --env staging",
-    "db:migrate:prod": "pnpm wrangler d1 migrations apply danmaku-anywhere-db --env production",
+    "db:migrate:staging": "pnpm wrangler d1 migrations apply danmaku-anywhere-db-staging --env staging --remote",
+    "db:migrate:prod": "pnpm wrangler d1 migrations apply danmaku-anywhere-db --env production --remote",
     "prepare": "lefthook install",
     "fallow": "fallow"
   },
