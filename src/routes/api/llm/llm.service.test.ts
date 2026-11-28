@@ -4,6 +4,12 @@ import '@/test-utils/mockBindings'
 import { extractTitleWithGemini } from './llm.service'
 import { v2GenerationConfig, v2Prompt } from './prompt'
 
+type GeminiRequestBody = {
+  contents: unknown
+  systemInstruction: { parts: unknown }
+  generationConfig: unknown
+}
+
 function geminiResponse(text: string) {
   return new Response(
     JSON.stringify({
@@ -47,7 +53,7 @@ describe('extractTitleWithGemini', () => {
       url: request.url,
       method: request.method,
       headers: request.headers,
-      body: await request.json<any>(),
+      body: await request.json<GeminiRequestBody>(),
     }
   }
 

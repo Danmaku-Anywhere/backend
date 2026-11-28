@@ -1,5 +1,7 @@
 import { ApiError } from '@google/genai'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import '@/test-utils/mockBindings'
+import { makeUnitTestRequest } from '@/test-utils/makeUnitTestRequest'
 import { toHttpException } from './geminiErrorHandler'
 
 describe('toHttpException', () => {
@@ -25,18 +27,57 @@ describe('toHttpException', () => {
     expect(result.status).toBe(status)
     expect(result.message).toBe(message)
   })
+})
 
-  it('maps a generic Error to 500 with its message', () => {
-    const result = toHttpException(new Error('bad json'))
-
-    expect(result.status).toBe(500)
-    expect(result.message).toBe('bad json')
+describe('Gemini errors through the app', () => {
+  beforeEach(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => {})
   })
 
-  it('maps a non-Error throw to 500 with the default message', () => {
-    const result = toHttpException('oops')
-
-    expect(result.status).toBe(500)
-    expect(result.message).toBe('Failed to extract title')
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    vi.restoreAllMocks()
   })
+
+  function stubGemini(status: number) {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => {
+        return new Response(
+          JSON.stringify({ error: { code: status, message: 'upstream' } }),
+          { status, headers: { 'Content-Type': 'application/json' } }
+        )
+      })
+    )
+  }
+
+  async function extractTitle(input: string) {
+    const response = await makeUnitTestRequest(
+      new Request('http://example.com/proxy/gemini/extractTitle', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input }),
+      })
+    )
+    return {
+      status: response.status,
+      body: await response.json<{ message: string; success: boolean }>(),
+    }
+  }
+
+  it.each([
+    [429, 429, 'Rate limit exceeded, please try again later.'],
+    [401, 500, 'Failed to extract title'],
+    [500, 500, 'Failed to extract title'],
+  ])(
+    'answers an upstream %i with HTTP %i',
+    async (upstream, status, message) => {
+      stubGemini(upstream)
+
+      const result = await extractTitle(`<title>upstream ${upstream}</title>`)
+
+      expect(result.status).toBe(status)
+      expect(result.body).toEqual({ message, success: false })
+    }
+  )
 })
