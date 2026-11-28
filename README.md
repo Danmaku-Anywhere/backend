@@ -1,26 +1,7 @@
 # Danmaku Anywhere backend
 
-Cloudflare Workers backend: API proxy, auth, DDP/danmaku routes, LLM, and D1 DB.
+Cloudflare Worker for [Danmaku Anywhere](https://github.com/Danmaku-Anywhere/danmaku-anywhere): DDP proxy, auth, LLM features and the manifest catalog, on Hono with D1.
 
-## Tech Stack
+Run `pnpm install` and `pnpm dev` for a local server; the other scripts are in `package.json`.
 
-- Hono, Wrangler, Cloudflare Workers
-- D1 (SQLite), Drizzle ORM
-- Better Auth, Sentry, Zod
-
-## Scripts
-
-| Command                 | Description                           |
-| ----------------------- | ------------------------------------- |
-| `pnpm dev`              | Local dev (staging env)               |
-| `pnpm dev:remote`       | Remote dev                            |
-| `pnpm test`             | Vitest (pool workers)                 |
-| `pnpm deploy:staging`   | Deploy staging                        |
-| `pnpm deploy:prod`      | Deploy production                     |
-| `pnpm db:migrate:local` | Apply D1 migrations locally (staging) |
-| `pnpm drizzle:generate` | Generate Drizzle migrations           |
-
-## Key routes
-
-- API routes under `/` (see `src/routes/api/`): DDP proxy, LLM, auth, etc.
-- Uses `@danmaku-anywhere/integration-policy` for policy checks.
+Staging (api.danmaku-staging.weeblify.app) deploys from `master` through Cloudflare Workers Builds. Production (api.danmaku.weeblify.app) is deployed by hand.
