@@ -1,6 +1,9 @@
 {
   "name": "danmaku-anywhere-proxy",
   "main": "src/index.ts",
+  "alias": {
+    "zod-to-json-schema": "./src/stubs/zod-to-json-schema.ts"
+  },
   "compatibility_date": "2025-05-05",
   "compatibility_flags": ["nodejs_compat"],
   "assets": {
