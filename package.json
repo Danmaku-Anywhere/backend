@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@danmaku-anywhere/integration-policy": "^0.1.1",
-    "@google/generative-ai": "^0.24.1",
+    "@google/genai": "^3.6.1",
     "@hono/standard-validator": "^0.4.1",
     "@hono/zod-validator": "^0.9.1",
     "@scalar/hono-api-reference": "^0.12.26",
