@@ -9,6 +9,14 @@ describe('Basic functionality', () => {
     expect(response.status).toBe(404)
   })
 
+  it('serves an OpenAPI document that describes the zod route schemas', async () => {
+    const request = new Request('http://example.com/docs')
+    const response = await makeUnitTestRequest(request)
+    expect(response.status).toBe(200)
+    const doc = (await response.json()) as { paths: Record<string, unknown> }
+    expect(Object.keys(doc.paths).length).toBeGreaterThan(0)
+  })
+
   it('sets X-Powered-By header', async () => {
     const request = new Request('http://example.com/')
     const response = await makeUnitTestRequest(request)

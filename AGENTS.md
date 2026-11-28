@@ -7,7 +7,7 @@ Cloudflare Workers backend app built with Hono. Provides proxy endpoints for dan
 ## Tech stack
 
 - Cloudflare Workers runtime
-- Hono framework with Zod OpenAPI
+- Hono framework with hono-openapi
 - Drizzle ORM with D1 (SQLite)
 - Better Auth for authentication
 - Sentry for error monitoring
