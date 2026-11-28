@@ -28,7 +28,7 @@
     "db:migrate:staging": "pnpm wrangler d1 migrations apply danmaku-anywhere-db-staging --env staging",
     "db:migrate:prod": "pnpm wrangler d1 migrations apply danmaku-anywhere-db --env production",
     "prepare": "lefthook install",
-    "fallow": "3.49.0"
+    "fallow": "fallow"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.9",

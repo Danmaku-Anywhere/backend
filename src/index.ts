@@ -115,7 +115,18 @@ export default Sentry.withSentry((env: Env) => {
   return {
     dsn: 'https://a57c6ba48bc0da21d4c6f7074e7a6f0e@o4509744978460672.ingest.us.sentry.io/4509744987308032',
     release: versionId,
-    dataCollection: { userInfo: false, cookies: false, httpHeaders: false },
+    // Every field left out here defaults to collecting, including raw request
+    // bodies, which would send sign-in and reset passwords to Sentry.
+    dataCollection: {
+      userInfo: false,
+      cookies: false,
+      httpHeaders: false,
+      httpBodies: [],
+      genAI: { inputs: false, outputs: false },
+      mcp: { inputs: false, outputs: false },
+      databaseQueryData: false,
+      queues: false,
+    },
     tracesSampleRate: env.ENVIRONMENT === 'production' ? 0.001 : 1.0,
     environment: env.ENVIRONMENT,
     enabled: !getIsTestEnv(),
