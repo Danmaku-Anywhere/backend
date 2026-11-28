@@ -1,4 +1,4 @@
-import type { GenerationConfig } from '@google/generative-ai'
+import type { GenerateContentConfig } from '@google/genai'
 import type { Context } from 'hono'
 import { validator } from 'hono-openapi'
 import { z } from 'zod'
@@ -15,7 +15,10 @@ export const validateTitleInputOpenApi = validator('json', extractTitleSchema)
 
 type ExtractTitleValidated = z.infer<typeof extractTitleSchema>
 
-export function handleExtractTitle(prompt: string, config: GenerationConfig) {
+export function handleExtractTitle(
+  prompt: string,
+  config: GenerateContentConfig
+) {
   return async (c: Context<{ Bindings: Env }>) => {
     const { input } = c.req.valid('json' as never) as ExtractTitleValidated
     const result = await extractTitleWithGemini({
@@ -30,7 +33,7 @@ export function handleExtractTitle(prompt: string, config: GenerationConfig) {
 
 export function handleExtractTitleLegacy(
   prompt: string,
-  config: GenerationConfig
+  config: GenerateContentConfig
 ) {
   return async (c: Context<{ Bindings: Env }>) => {
     const { input } = await c.req.json<{ input: string }>()

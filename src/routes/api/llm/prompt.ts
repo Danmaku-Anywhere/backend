@@ -1,34 +1,34 @@
-import { type GenerationConfig, SchemaType } from '@google/generative-ai'
+import { type GenerateContentConfig, Type } from '@google/genai'
 
 export const v1Prompt =
   'Given the HTML below, infer the currently playing show, and return the following information about the show:\ntitle: The title of the show, do not include season or episode number\nseason: The season of the show, if available. The season may not be numeric.\nepisode: The episode number. Return 1 if not available.\naltTitles: Any known alternative titles of the show, for example in other languages\nepisodeTitle: The title of the single episode, if available\n\nIf no show is detected, return an empty title'
 
-export const v1GenerationConfig: GenerationConfig = {
+export const v1GenerationConfig: GenerateContentConfig = {
   temperature: 1,
   topP: 0.95,
   topK: 40,
   maxOutputTokens: 1024,
   responseMimeType: 'application/json',
   responseSchema: {
-    type: SchemaType.OBJECT,
+    type: Type.OBJECT,
     properties: {
       title: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
       },
       episode: {
-        type: SchemaType.NUMBER,
+        type: Type.NUMBER,
       },
       season: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
       },
       altTitles: {
-        type: SchemaType.ARRAY,
+        type: Type.ARRAY,
         items: {
-          type: SchemaType.STRING,
+          type: Type.STRING,
         },
       },
       episodeTitle: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
       },
     },
     required: ['title', 'episode'],
@@ -43,30 +43,30 @@ episode: The numeric episode number, be sure to include it if one is available.
 altTitles: A list of other possible titles found in the HTML.
 episodeTitle: The title of the singular episode, if available.`
 
-export const v2GenerationConfig: GenerationConfig = {
+export const v2GenerationConfig: GenerateContentConfig = {
   temperature: 0.75,
   responseMimeType: 'application/json',
   responseSchema: {
-    type: SchemaType.OBJECT,
+    type: Type.OBJECT,
     required: ['isShow', 'title', 'episode', 'altTitles', 'episodeTitle'],
     properties: {
       isShow: {
-        type: SchemaType.BOOLEAN,
+        type: Type.BOOLEAN,
       },
       title: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
       },
       episode: {
-        type: SchemaType.NUMBER,
+        type: Type.NUMBER,
       },
       altTitles: {
-        type: SchemaType.ARRAY,
+        type: Type.ARRAY,
         items: {
-          type: SchemaType.STRING,
+          type: Type.STRING,
         },
       },
       episodeTitle: {
-        type: SchemaType.STRING,
+        type: Type.STRING,
       },
     },
   },
